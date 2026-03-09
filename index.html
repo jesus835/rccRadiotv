@@ -1731,13 +1731,6 @@
       document.addEventListener('mozfullscreenchange', onFullscreenChange);
       document.addEventListener('MSFullscreenChange', onFullscreenChange);
     }
-
-    /* Service Worker: guardar página localmente para ahorrar ancho de banda */
-    if ('serviceWorker' in navigator) {
-      window.addEventListener('load', () => {
-        navigator.serviceWorker.register('sw.js').catch(() => {});
-      });
-    }
   </script>
 </body>
 </html>
