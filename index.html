@@ -1,0 +1,1712 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>RCC – Renovación Carismática Católica | Radio y TV en vivo</title>
+  <meta name="description" content="RCC Radio y TV – Renovación Carismática Católica. Escucha 100.7 FM en vivo y mira la transmisión de TV. Tu radio de bendición desde Guatemala." />
+  <meta name="keywords" content="RCC Radio, RCC TV, Renovación Carismática Católica, radio en vivo, TV en vivo, 100.7 FM, Guatemala, radio católica" />
+  <meta name="robots" content="index, follow" />
+  <meta name="author" content="RCC – Renovación Carismática Católica" />
+  <link rel="icon" type="image/png" href="images/logo.png" />
+  <link rel="apple-touch-icon" href="images/logo.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;500;700&display=swap" rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/hls.js@1.4.12"></script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Ubuntu', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      color: #222;
+      background: #000;
+      position: relative;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: url('images/fondo.jpg') center center / cover no-repeat;
+      opacity: 0.3;
+      z-index: -1;
+    }
+
+    /* ─── HEADER ─── */
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 40px;
+      border-bottom: 1px solid #e8e8e8;
+      background: #fff;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+    }
+
+    .logo-img {
+      height: 80px;
+      width: auto;
+      display: block;
+    }
+
+    .logo-text-header {
+      font-size: 17.5px;
+      font-weight: 700;
+      color: #c0001a;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-left: 12px;
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+    }
+
+    nav a {
+      text-decoration: none;
+      font-size: 12px;
+      font-weight: 700;
+      color: #333;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
+
+    nav a.active {
+      color: #c0001a;
+      border-bottom: 2px solid #c0001a;
+      padding-bottom: 2px;
+    }
+
+    nav a:hover { color: #c0001a; }
+
+    /* ─── HERO TEXT ─── */
+    .hero-section {
+      padding: 28px 40px 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .hero-content {
+      max-width: 620px;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 50px;
+    }
+
+    .hero-title {
+      font-family: 'Ubuntu', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      font-size: 60px;
+      font-weight: 700;
+      line-height: 1.1;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      color: #111;
+      margin-bottom: 0;
+      margin-top: 10vh;
+    }
+
+    .hero-title-soft {
+      color: rgba(255, 255, 255, 0.9);
+    }
+
+    .hero-title .gold,
+    .gold {
+      color: #ff5252;
+    }
+
+    .hero-subtitle {
+      font-size: 17.5px;
+      color: #fff;
+      max-width: 520px;
+      margin-bottom: 0;
+    }
+
+    .frequency-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 14px;
+      border-radius: 20px;
+      border: 1px solid #c0001a;
+      background: #c0001a;
+      color: #fff;
+      font-weight: 700;
+      font-size: 16px;
+      margin-bottom: 0;
+    }
+
+
+    .audio-visualizer {
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      gap: 3px;
+      height: 26px;
+      margin: 0 auto;
+    }
+
+    .audio-visualizer .bar {
+      width: 3px;
+      border-radius: 999px;
+      background: linear-gradient(to top, #c0001a, #f5c16a);
+      animation: bounce 1.1s infinite ease-in-out;
+    }
+
+    .audio-visualizer .bar:nth-child(odd) { animation-duration: 1.2s; }
+    .audio-visualizer .bar:nth-child(3n) { animation-duration: 0.9s; }
+
+    @keyframes bounce {
+      0%, 100% { height: 4px; opacity: 0.5; }
+      50% { height: 22px; opacity: 1; }
+    }
+
+    /* ─── LIVE SECTION ─── */
+    .live-section {
+      padding: 40px 40px 30px;
+    }
+
+    .live-columns {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+    }
+
+    .live-column-header {
+      text-align: center;
+      margin-bottom: 16px;
+    }
+
+    .live-label {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      margin-bottom: 6px;
+    }
+
+    .live-label::before,
+    .live-label::after {
+      content: '';
+      flex: 1;
+      height: 1.5px;
+      background: linear-gradient(to right, transparent, #b8a060);
+    }
+
+    .live-label::after {
+      background: linear-gradient(to left, transparent, #b8a060);
+    }
+
+    .live-label span {
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      color: #555;
+      text-transform: uppercase;
+    }
+
+    .live-column-header h2 {
+      font-family: 'Oswald', sans-serif;
+      font-size: 24px;
+      font-weight: 600;
+      color: #111;
+      margin-top: 5vh;
+    }
+
+    /* Flame divider between columns */
+    .live-columns-wrapper {
+      position: relative;
+    }
+
+    /* ─── AUDIO PLAYER ─── */
+    .audio-player {
+      background: #000;
+      border-radius: 12px;
+      padding: 24px 28px 20px;
+      margin-bottom: 10px;
+      color: #fff;
+    }
+
+    .audio-player-song {
+      text-align: center;
+      margin-bottom: 16px;
+    }
+
+    .audio-player-song h3 {
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 4px;
+      color: #fff;
+    }
+
+    .audio-player-song p {
+      font-size: 13px;
+      opacity: 0.9;
+      color: rgba(255,255,255,0.95);
+    }
+
+    .audio-player-controls {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+    }
+
+    .audio-player-controls button {
+      background: none;
+      border: none;
+      color: #fff;
+      cursor: pointer;
+      padding: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0.9;
+    }
+
+    .audio-player-controls button:hover { opacity: 1; }
+
+    .audio-player-controls button svg { width: 22px; height: 22px; fill: #fff; }
+
+    .audio-player .play-btn {
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.2);
+      border: 2px solid rgba(255,255,255,0.8);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+    }
+
+    .audio-player .play-btn svg { width: 24px; height: 24px; fill: #fff; }
+
+    /* ─── RADIO OVERLAY (igual a imagen) ─── */
+    .radio-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 1000;
+      display: none;
+      flex-direction: column;
+      background: #000;
+      overflow: hidden;
+    }
+
+    .radio-overlay.open { display: flex; }
+
+    .radio-overlay-header {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 16px 20px;
+      background: #000;
+      position: relative;
+      flex-shrink: 0;
+      border: none;
+      border-bottom: none;
+    }
+
+    .radio-overlay-back {
+      position: absolute;
+      left: 20px;
+      background: none;
+      border: none;
+      color: #fff;
+      cursor: pointer;
+      padding: 8px;
+    }
+
+    .radio-overlay-back svg { width: 24px; height: 24px; fill: #fff; }
+
+    .radio-overlay-title {
+      font-size: 17px;
+      font-weight: 700;
+      color: #fff;
+    }
+
+    .radio-overlay-art {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 24px 20px 16px;
+      min-height: 0;
+    }
+
+    .radio-overlay-art-text {
+      font-size: 11px;
+      font-weight: 600;
+      color: #fff;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+
+    .radio-overlay-art-circle {
+      width: 220px;
+      height: 220px;
+      max-width: 70vw;
+      max-height: 70vw;
+      border-radius: 50%;
+      background: #1a1a1a;
+      border: 3px solid #333;
+      margin-bottom: 16px;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .radio-overlay-art-circle img {
+      width: 70%;
+      height: 70%;
+      object-fit: contain;
+    }
+
+    .radio-overlay-visualizer {
+      margin-top: 16px;
+    }
+
+    .radio-overlay-card {
+      width: 100%;
+      background: #2d2d32;
+      border-radius: 24px 24px 0 0;
+      padding: 12px 24px 28px;
+      padding-bottom: max(28px, env(safe-area-inset-bottom));
+      flex-shrink: 0;
+    }
+
+    .radio-overlay-handle {
+      width: 36px;
+      height: 4px;
+      background: rgba(255,255,255,0.4);
+      border-radius: 2px;
+      margin: 0 auto 20px;
+      cursor: pointer;
+    }
+
+    .radio-overlay-song {
+      text-align: center;
+    }
+
+    .radio-overlay-song h3 {
+      font-size: 20px;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 4px;
+    }
+
+    .radio-overlay-song p {
+      font-size: 14px;
+      color: rgba(255,255,255,0.65);
+      margin-bottom: 18px;
+    }
+
+    .radio-overlay-progress {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 24px;
+    }
+
+    .radio-overlay-time {
+      font-size: 12px;
+      font-weight: 700;
+      color: #fff;
+      padding: 4px 12px;
+      background: #c0001a;
+      border-radius: 4px;
+    }
+
+    .radio-overlay-controls {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 28px;
+      margin-bottom: 20px;
+    }
+
+    .radio-overlay-controls button {
+      background: none;
+      border: none;
+      color: #fff;
+      cursor: pointer;
+      padding: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0.9;
+    }
+
+    .radio-overlay-controls button:hover { opacity: 1; }
+
+    .radio-overlay-controls button svg { width: 24px; height: 24px; fill: #fff; }
+
+    .radio-overlay .play-btn {
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      background: #fff;
+      border: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.3);
+    }
+
+    .radio-overlay .play-btn svg { width: 32px; height: 32px; fill: #111; margin-left: 4px; }
+
+    .radio-overlay-volume {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 16px;
+    }
+
+    .radio-overlay-volume svg {
+      width: 20px;
+      height: 20px;
+      fill: #fff;
+      flex-shrink: 0;
+    }
+
+    .radio-overlay-volume input[type="range"] {
+      width: 180px;
+      height: 4px;
+      -webkit-appearance: none;
+      appearance: none;
+      background: rgba(255,255,255,0.3);
+      border-radius: 2px;
+    }
+
+    .radio-overlay-volume input[type="range"]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      width: 12px;
+      height: 12px;
+      background: #fff;
+      border-radius: 50%;
+      cursor: pointer;
+    }
+
+    .radio-overlay-volume input[type="range"]::-moz-range-thumb {
+      width: 12px;
+      height: 12px;
+      background: #fff;
+      border-radius: 50%;
+      cursor: pointer;
+      border: none;
+    }
+
+    /* ─── TV OVERLAY (igual a radio) ─── */
+    .tv-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 1000;
+      display: none;
+      flex-direction: column;
+      background: #000;
+      overflow: hidden;
+    }
+
+    .tv-overlay.open { display: flex; }
+
+    .tv-overlay-header {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 16px 20px;
+      background: #000;
+      position: relative;
+      flex-shrink: 0;
+      border: none;
+      border-bottom: none;
+    }
+
+    .tv-overlay-back {
+      position: absolute;
+      left: 20px;
+      background: none;
+      border: none;
+      color: #fff;
+      cursor: pointer;
+      padding: 8px;
+    }
+
+    .tv-overlay-back svg { width: 24px; height: 24px; fill: #fff; }
+
+    .tv-overlay-title { font-size: 17px; font-weight: 700; color: #fff; }
+
+    .tv-overlay-video {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      min-height: 0;
+    }
+
+    .tv-overlay-video-inner {
+      width: 100%;
+      max-width: 640px;
+      aspect-ratio: 16/9;
+      background: #111;
+      border-radius: 8px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .tv-overlay-video-inner video,
+    .tv-overlay-video-inner img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    /* Fullscreen: video se adapta al tamaño manteniendo proporción */
+    #tvOverlayVideo:-webkit-full-screen,
+    #tvOverlayVideo:-moz-full-screen,
+    #tvOverlayVideo:-ms-fullscreen,
+    #tvOverlayVideo:fullscreen {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    .tv-overlay-video-play {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 72px;
+      height: 72px;
+      background: rgba(192,0,26,0.9);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+    }
+
+    .tv-overlay-video-play svg { width: 32px; height: 32px; fill: #fff; margin-left: 4px; }
+
+    .tv-overlay-en-directo {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      background: #c0001a;
+      color: #fff;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 4px;
+    }
+
+    .tv-overlay-card {
+      width: 100%;
+      background: #2d2d32;
+      border-radius: 24px 24px 0 0;
+      padding: 12px 24px 28px;
+      padding-bottom: max(28px, env(safe-area-inset-bottom));
+      flex-shrink: 0;
+    }
+
+    .tv-overlay-handle {
+      width: 36px;
+      height: 4px;
+      background: rgba(255,255,255,0.4);
+      border-radius: 2px;
+      margin: 0 auto 20px;
+      cursor: pointer;
+    }
+
+    .tv-overlay-song { text-align: center; }
+
+    .tv-overlay-song h3 { font-size: 20px; font-weight: 700; color: #fff; margin-bottom: 4px; }
+
+    .tv-overlay-song p { font-size: 14px; color: rgba(255,255,255,0.65); margin-bottom: 18px; }
+
+    .tv-overlay-progress {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 24px;
+    }
+
+    .tv-overlay-time {
+      font-size: 12px;
+      font-weight: 700;
+      color: #fff;
+      padding: 4px 12px;
+      background: #c0001a;
+      border-radius: 4px;
+    }
+
+    /* ─── VIDEO PLAYER ─── */
+    .video-player {
+      position: relative;
+      border-radius: 8px;
+      overflow: hidden;
+      background: #000;
+      aspect-ratio: 16/9;
+      margin-bottom: 10px;
+    }
+
+    .video-player img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.85;
+    }
+
+    .en-directo {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: #c0001a;
+      color: #fff;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .en-directo::before {
+      content: '';
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #fff;
+      animation: pulse 1.2s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.3; }
+    }
+
+    .video-play-btn {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -55%);
+      width: 56px;
+      height: 56px;
+      background: rgba(192,0,26,0.85);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+    }
+
+    .video-play-btn svg { width: 22px; height: 22px; fill: #fff; }
+
+    .video-controls-bar {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: rgba(0,0,0,0.6);
+      padding: 6px 12px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .video-controls-bar svg { width: 16px; height: 16px; fill: #fff; flex-shrink: 0; }
+
+    .video-progress {
+      flex: 1;
+      height: 3px;
+      background: rgba(255,255,255,0.3);
+      border-radius: 2px;
+    }
+
+    .video-settings, .video-fullscreen {
+      color: #fff;
+      display: flex;
+      align-items: center;
+    }
+
+    .video-settings svg, .video-fullscreen svg { fill: #fff; }
+
+    /* ─── PROGRAMA ACTUAL ─── */
+    .programa-actual-badge {
+      display: flex;
+      justify-content: center;
+      margin: 14px 0 10px;
+    }
+
+    .programa-actual-badge span {
+      background: #f5f0e0;
+      border: 1.5px solid #c8a84b;
+      color: #8a6a10;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      padding: 4px 18px;
+      border-radius: 20px;
+      text-transform: uppercase;
+    }
+
+    /* Ocultar badge y tarjeta de programa actual (radio) */
+    .programa-actual-badge,
+    .programa-card {
+      display: none;
+    }
+
+    .programa-card {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 10px 14px;
+      border: 1px solid #e8e8e8;
+      border-radius: 8px;
+      margin-bottom: 16px;
+      background: #fff;
+    }
+
+    .programa-card img {
+      width: 52px;
+      height: 52px;
+      border-radius: 6px;
+      object-fit: cover;
+      flex-shrink: 0;
+    }
+
+    .programa-info h4 {
+      font-size: 14px;
+      font-weight: 700;
+      color: #111;
+      margin-bottom: 2px;
+    }
+
+    .programa-info p {
+      font-size: 12px;
+      color: #666;
+    }
+
+    .programa-card-text {
+      padding: 10px 14px;
+      border: 1px solid #e8e8e8;
+      border-radius: 8px;
+      margin-bottom: 16px;
+      background: #fff;
+    }
+
+    .programa-card-text h4 {
+      font-size: 14px;
+      font-weight: 700;
+      color: #111;
+      margin-bottom: 2px;
+    }
+
+    .programa-card-text p {
+      font-size: 12px;
+      color: #666;
+    }
+
+    /* ─── BUTTONS ─── */
+    .btn-primary {
+      display: block;
+      width: 100%;
+      background: #c0001a;
+      color: #fff;
+      font-family: 'Ubuntu', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      font-size: 15px;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-align: center;
+      padding: 13px 0;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      text-transform: uppercase;
+      text-decoration: none;
+    }
+
+    .btn-primary:hover { background: #a00017; }
+
+    button.btn-primary {
+      cursor: pointer;
+      font-family: inherit;
+    }
+
+    /* ─── FLAME ICON SVG ─── */
+    .flame-divider {
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      padding-top: 4px;
+    }
+
+    /* ─── QUIÉNES SOMOS ─── */
+    .quienes-somos-section {
+      padding: 50px 40px 60px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.98) 0%, rgba(248,248,250,0.98) 100%);
+    }
+
+    .quienes-somos-section .section-title {
+      margin-bottom: 32px;
+    }
+
+    .quienes-somos-section .section-title h2 {
+      font-family: 'Ubuntu', system-ui, sans-serif;
+      font-size: 26px;
+      font-weight: 700;
+      letter-spacing: 3px;
+      color: #c0001a;
+      text-transform: uppercase;
+    }
+
+    .quienes-somos-section .section-title::before,
+    .quienes-somos-section .section-title::after {
+      background: linear-gradient(90deg, transparent, #c8a84b);
+    }
+
+    .quienes-somos-content {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 36px 40px;
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.08), 0 0 0 1px rgba(192,0,26,0.08);
+      text-align: center;
+      position: relative;
+    }
+
+    .quienes-somos-content::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 60px;
+      height: 4px;
+      background: linear-gradient(90deg, #c0001a, #c8a84b);
+      border-radius: 0 0 4px 4px;
+    }
+
+    .quienes-somos-content p {
+      font-size: 17px;
+      line-height: 1.8;
+      color: #444;
+      margin-bottom: 20px;
+    }
+
+    .quienes-somos-content p:last-child {
+      margin-bottom: 0;
+    }
+
+    /* ─── NOTICIAS ─── */
+    .noticias-section {
+      padding: 30px 40px 40px;
+      display: none;
+    }
+
+    .section-title {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+
+    .section-title::before,
+    .section-title::after {
+      content: '';
+      flex: 1;
+      height: 1.5px;
+      background: #c0001a;
+    }
+
+    .section-title h2 {
+      font-family: 'Oswald', sans-serif;
+      font-size: 20px;
+      font-weight: 700;
+      letter-spacing: 3px;
+      color: #111;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    .news-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+    }
+
+    .news-card {
+      cursor: pointer;
+    }
+
+    .news-card img {
+      width: 100%;
+      aspect-ratio: 4/3;
+      object-fit: cover;
+      border-radius: 4px;
+      display: block;
+      margin-bottom: 10px;
+    }
+
+    .news-card h3 {
+      font-size: 13px;
+      font-weight: 700;
+      color: #111;
+      line-height: 1.4;
+    }
+
+    .news-card:hover h3 { color: #c0001a; }
+
+    /* ─── FOOTER ─── */
+    footer {
+      background: #8b0016;
+      color: #fff;
+      padding: 30px 40px 14px;
+    }
+
+    .footer-top {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    .footer-logo-icon {
+      margin-bottom: 10px;
+    }
+
+    .footer-name {
+      font-family: 'Ubuntu', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      font-size: 20px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-align: center;
+    }
+
+    .footer-contact {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      padding: 16px 0;
+      border-top: 1px solid rgba(255,255,255,0.25);
+      border-bottom: 1px solid rgba(255,255,255,0.25);
+      margin-bottom: 12px;
+      gap: 10px;
+    }
+
+    .footer-contact-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+    }
+
+    .footer-contact-item svg { width: 18px; height: 18px; fill: #fff; flex-shrink: 0; }
+
+    .footer-contact-email {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .footer-copy {
+      text-align: center;
+      font-size: 11px;
+      color: rgba(255,255,255,0.7);
+    }
+
+    /* Divider line between columns */
+    .live-columns-wrapper {
+      position: relative;
+    }
+
+    .column-divider {
+      position: absolute;
+      left: 50%;
+      top: 0;
+      bottom: 0;
+      width: 1px;
+      background: #e0e0e0;
+      transform: translateX(-50%);
+    }
+
+    .flame-center {
+      position: absolute;
+      left: 50%;
+      top: 0;
+      transform: translateX(-50%);
+      z-index: 2;
+    }
+
+    /* ─── HAMBURGER BUTTON ─── */
+    .nav-toggle {
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      gap: 5px;
+      width: 38px;
+      height: 38px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 4px;
+      z-index: 200;
+    }
+
+    .nav-toggle span {
+      display: block;
+      width: 100%;
+      height: 2.5px;
+      background: #c0001a;
+      border-radius: 2px;
+      transition: transform 0.3s, opacity 0.3s;
+    }
+
+    .nav-toggle.open span:nth-child(1) { transform: translateY(7.5px) rotate(45deg); }
+    .nav-toggle.open span:nth-child(2) { opacity: 0; }
+    .nav-toggle.open span:nth-child(3) { transform: translateY(-7.5px) rotate(-45deg); }
+
+    /* ─── TABLET ≤ 900px ─── */
+    @media (max-width: 900px) {
+      header { padding: 10px 20px; }
+
+      .hero-section { padding: 20px 20px 4px; }
+      .hero-title { font-size: 51px; letter-spacing: 2px; }
+      .hero-subtitle { font-size: 13px; }
+
+      .logo-img { height: 65px; }
+
+      nav { gap: 14px; }
+      nav a { font-size: 11px; }
+
+      .live-section { padding: 30px 20px 20px; }
+      .quienes-somos-section { padding: 30px 20px 40px; }
+      .quienes-somos-section .quienes-somos-content { padding: 32px 28px; }
+      .noticias-section { padding: 24px 20px 30px; }
+      footer { padding: 24px 20px 12px; }
+
+      .news-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; }
+
+      .footer-contact { grid-template-columns: 1fr 1fr; }
+    }
+
+    /* ─── MOBILE ≤ 640px ─── */
+    @media (max-width: 640px) {
+      /* Header */
+      header {
+        padding: 10px 16px;
+        flex-wrap: wrap;
+        position: relative;
+      }
+
+      .logo-img { height: 58px; }
+
+      /* Show hamburger, hide nav by default */
+      .nav-toggle { display: flex; }
+
+      nav {
+        display: none;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: #fff;
+        border-top: 2px solid #c0001a;
+        box-shadow: 0 6px 20px rgba(0,0,0,0.12);
+        z-index: 100;
+        padding: 8px 0;
+      }
+
+      nav.open { display: flex; }
+
+      nav a {
+        width: 100%;
+        padding: 12px 20px;
+        font-size: 13px;
+        border-bottom: 1px solid #f0f0f0;
+      }
+
+      nav a:last-child { border-bottom: none; }
+
+      nav a.active {
+        border-bottom: 1px solid #f0f0f0;
+        border-left: 3px solid #c0001a;
+        padding-left: 17px;
+      }
+
+      /* Hero */
+      .hero-section {
+        padding: 18px 16px 0;
+      }
+
+      .hero-content {
+        max-width: 100%;
+        text-align: center;
+      }
+
+      .hero-title {
+        font-size: 45px;
+        letter-spacing: 1.6px;
+      }
+
+      .hero-subtitle {
+        font-size: 13px;
+      }
+
+      /* Live section — stack columns */
+      .live-section { padding: 24px 16px 16px; }
+      .quienes-somos-section { padding: 24px 16px 36px; }
+
+      .live-columns {
+        grid-template-columns: 1fr;
+        gap: 32px;
+      }
+
+      /* Hide the absolute flame between columns on mobile */
+      .flame-center { display: none; }
+
+      /* Add a separator between radio and TV on mobile */
+      .live-column + .live-column {
+        padding-top: 24px;
+        border-top: 1px solid #e8e8e8;
+      }
+
+      .live-column-header h2 { font-size: 20px; }
+
+
+      /* Noticias — 2 columns on mobile */
+      .quienes-somos-section .quienes-somos-content { padding: 28px 20px; }
+      .quienes-somos-section .quienes-somos-content p { font-size: 15px; }
+      .noticias-section { padding: 20px 16px 28px; }
+      .news-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 14px;
+      }
+
+      .news-card h3 { font-size: 12px; }
+
+      .section-title h2 { font-size: 16px; letter-spacing: 2px; }
+
+      /* Footer */
+      footer { padding: 22px 16px 12px; }
+
+      .footer-name { font-size: 15px; letter-spacing: 1px; }
+
+      .footer-contact {
+        grid-template-columns: 1fr;
+        gap: 14px;
+      }
+
+      .footer-copy { font-size: 10px; }
+    }
+
+    /* ─── SMALL MOBILE ≤ 380px ─── */
+    @media (max-width: 380px) {
+      .news-grid { grid-template-columns: 1fr; }
+      .logo-text .subtitle { display: none; }
+      .audio-player { padding: 18px 16px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ─── HEADER ─── -->
+  <header>
+    <a href="#" class="logo">
+      <img src="images/logo.png" alt="RCC – Renovación Carismática Católica" class="logo-img">
+      <span class="logo-text-header">Radio-TV RCC</span>
+    </a>
+    <button class="nav-toggle" id="navToggle" aria-label="Abrir menú" aria-expanded="false">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+    <nav id="mainNav">
+      <a href="#inicio" class="active">Inicio</a>
+      <a href="#quienes-somos">Quiénes Somos</a>
+      <a href="#" id="linkRadioOverlay">Radio en Línea</a>
+      <a href="#" id="linkTvOverlay">TV en Vivo</a>
+      <a href="#contacto">Contáctanos</a>
+    </nav>
+  </header>
+
+  <!-- ─── HERO TEXT ─── -->
+  <section class="hero-section" id="inicio">
+    <div class="hero-content">
+      <h1 class="hero-title">
+        <span class="hero-title-soft">TU RADIO DE</span><br>
+        <span class="gold">BENDICIÓN</span>
+      </h1>
+      <p class="hero-subtitle">
+        Compartiendo esperanza y palabra de vida desde Guatemala
+      </p>
+
+      <div class="frequency-badge">
+        <span>100.7 FM · RCC Radio</span>
+      </div>
+
+      <div class="audio-visualizer">
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── RADIO & TV EN VIVO ─── -->
+  <section class="live-section">
+    <div class="live-columns-wrapper">
+      <div class="live-columns">
+
+        <!-- RADIO -->
+        <div class="live-column" id="radio">
+          <div class="live-column-header">
+            <div class="live-label"><span>Radio en Directo</span></div>
+          </div>
+
+          <!-- Audio Player -->
+          <div class="audio-player">
+            <div class="audio-player-song">
+              <h3>RCC Radio en Vivo</h3>
+              <p>100.7 FM · Radio-TV RCC</p>
+            </div>
+            <div class="audio-player-controls">
+              <button type="button" aria-label="Anterior">
+                <svg viewBox="0 0 24 24"><path d="M6 18V6h2v12H6zm4-6l8.5 6V6l-8.5 6z"/></svg>
+              </button>
+              <button class="play-btn" type="button" aria-label="Reproducir">
+                <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+              </button>
+              <button type="button" aria-label="Siguiente">
+                <svg viewBox="0 0 24 24"><path d="M6 6v12h2V6H6zm4 6l8.5-6v12l-8.5-6z"/></svg>
+              </button>
+            </div>
+          </div>
+          <button type="button" class="btn-primary" id="btnEscucharVivo">Escuchar en vivo</button>
+        </div>
+
+        <!-- Flame + divider in center -->
+        <div class="flame-center">
+          <svg width="34" height="42" viewBox="0 0 34 42" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M17 2 C10 10 6 18 10 26 C8 20 12 16 12 22 C14 16 18 12 16 6 C22 12 20 22 18 28 C22 22 26 16 22 10 C28 16 28 26 22 32 C24 36 20 40 17 40 C14 40 10 36 12 32 C6 26 6 16 12 10 C10 16 14 20 14 26 C18 20 24 12 17 2Z" fill="#c0001a"/>
+            <!-- small cross at top -->
+            <rect x="15.5" y="1" width="3" height="10" fill="#c0001a"/>
+            <rect x="11" y="5" width="12" height="3" fill="#c0001a"/>
+          </svg>
+        </div>
+
+        <!-- TV -->
+        <div class="live-column" id="tv">
+          <div class="live-column-header">
+            <div class="live-label"><span>TV en Directo</span></div>
+            <h2>RCC TV Online</h2>
+          </div>
+
+          <!-- Video Player -->
+          <div class="video-player">
+            <img src="https://placehold.co/600x338/1a1a2e/ffffff?text=RCC+TV+Online" alt="RCC TV en vivo" />
+            <div class="en-directo">EN VIVO AHORA</div>
+            <div class="video-play-btn">
+              <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+            </div>
+            <div class="video-controls-bar">
+              <!-- play icon -->
+              <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+              <!-- volume icon -->
+              <svg viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02z"/></svg>
+              <div class="video-progress"></div>
+              <!-- settings icon -->
+              <svg viewBox="0 0 24 24"><path d="M19.14 12.94c.04-.3.06-.61.06-.94 0-.32-.02-.64-.07-.94l2.03-1.58a.49.49 0 0 0 .12-.61l-1.92-3.32a.49.49 0 0 0-.59-.22l-2.39.96a7.02 7.02 0 0 0-1.62-.94l-.36-2.54a.484.484 0 0 0-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96c-.22-.08-.47 0-.59.22L2.74 8.87c-.12.21-.08.47.12.61l2.03 1.58c-.05.3-.07.63-.07.94s.02.64.07.94l-2.03 1.58a.49.49 0 0 0-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.37 1.04.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54c.59-.24 1.13-.57 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.47-.12-.61l-2.01-1.58zM12 15.6c-1.98 0-3.6-1.62-3.6-3.6s1.62-3.6 3.6-3.6 3.6 1.62 3.6 3.6-1.62 3.6-3.6 3.6z"/></svg>
+              <!-- fullscreen icon -->
+              <svg viewBox="0 0 24 24"><path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/></svg>
+            </div>
+          </div>
+
+          <!-- Programa Actual -->
+          <button type="button" class="btn-primary" id="btnVerTransmision">Ver transmisión</button>
+        </div>
+
+      </div><!-- end .live-columns -->
+    </div><!-- end .live-columns-wrapper -->
+  </section>
+
+  <!-- ─── QUIÉNES SOMOS ─── -->
+  <section class="quienes-somos-section" id="quienes-somos">
+    <div class="section-title">
+      <h2>Quiénes Somos</h2>
+    </div>
+    <div class="quienes-somos-content">
+      <p>Radio-TV RCC es un medio de comunicación católico que transmite el mensaje de esperanza y fe desde Guatemala. Nuestra misión es llevar la palabra de vida a través de la radio en 100.7 FM y la señal de televisión en línea.</p>
+      <p>Formamos parte de la Renovación Carismática Católica, compartiendo programas, misas y contenido espiritual para toda la familia.</p>
+    </div>
+  </section>
+
+  <!-- ─── NOTICIAS Y EVENTOS ─── -->
+  <section class="noticias-section">
+    <div class="section-title">
+      <h2>Novedades y Próximos Eventos</h2>
+    </div>
+
+    <div class="news-grid">
+      <div class="news-card">
+        <img src="https://placehold.co/300x225/8b1a2a/ffffff?text=RCC+2024" alt="Encuentro Nacional RCC 2024" />
+        <h3>Encuentro Nacional RCC 2024</h3>
+      </div>
+      <div class="news-card">
+        <img src="https://placehold.co/300x225/1a1a2e/ffffff?text=Charlas+Cuaresma" alt="Nuevo ciclo de charlas de Cuaresma" />
+        <h3>Nuevo ciclo de charlas de Cuaresma</h3>
+      </div>
+      <div class="news-card">
+        <img src="https://placehold.co/300x225/6a1a6a/ffffff?text=RCC+Asamblea" alt="Conferencia RCC Cuaresma 2024" />
+        <h3>Conferencia RCC Cuaresma 2024</h3>
+      </div>
+      <div class="news-card">
+        <img src="https://placehold.co/300x225/2a1a0e/ffffff?text=Eucaristía" alt="Misa vespertina en vivo" />
+        <h3>Misa vespertina – La Voz de la Esperanza</h3>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── RADIO OVERLAY ─── -->
+  <div class="radio-overlay" id="radioOverlay">
+    <header class="radio-overlay-header">
+      <button type="button" class="radio-overlay-back" id="radioOverlayBack" aria-label="Cerrar">
+        <svg viewBox="0 0 24 24"><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg>
+      </button>
+      <h2 class="radio-overlay-title">RCC Radio</h2>
+    </header>
+    <div class="radio-overlay-art">
+      <span class="radio-overlay-art-text">Radio-TV RCC · 100.7 FM</span>
+      <div class="radio-overlay-art-circle">
+        <img src="images/logo.png" alt="RCC">
+      </div>
+      <div class="audio-visualizer radio-overlay-visualizer" id="radioOverlayVisualizer" style="display:none;">
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+      </div>
+      <video id="radioOverlayVideo" playsinline style="display:none;"></video>
+    </div>
+    <div class="radio-overlay-card">
+      <div class="radio-overlay-handle"></div>
+      <div class="radio-overlay-song">
+        <h3>RCC Radio en Vivo</h3>
+        <p>100.7 FM · Radio-TV RCC</p>
+      </div>
+      <div class="radio-overlay-progress">
+        <span class="radio-overlay-time">En vivo</span>
+      </div>
+      <div class="radio-overlay-controls">
+        <button type="button" aria-label="Anterior">
+          <svg viewBox="0 0 24 24"><path d="M6 18V6h2v12H6zm4-6l8.5 6V6l-8.5 6z"/></svg>
+        </button>
+        <button class="play-btn" type="button" id="radioOverlayPlayBtn" aria-label="Reproducir">
+          <svg class="icon-play" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+          <svg class="icon-pause" viewBox="0 0 24 24" style="display:none;"><rect x="5" y="4" width="4" height="16" rx="1"/><rect x="15" y="4" width="4" height="16" rx="1"/></svg>
+        </button>
+        <button type="button" aria-label="Siguiente">
+          <svg viewBox="0 0 24 24"><path d="M6 6v12h2V6H6zm4 6l8.5-6v12l-8.5-6z"/></svg>
+        </button>
+      </div>
+      <div class="radio-overlay-volume">
+        <svg viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02z"/></svg>
+        <input type="range" id="radioOverlayVolume" min="0" max="100" value="100" aria-label="Volumen">
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── TV OVERLAY ─── -->
+  <div class="tv-overlay" id="tvOverlay">
+    <header class="tv-overlay-header">
+      <button type="button" class="tv-overlay-back" id="tvOverlayBack" aria-label="Cerrar">
+        <svg viewBox="0 0 24 24"><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg>
+      </button>
+      <h2 class="tv-overlay-title">RCC TV</h2>
+    </header>
+    <div class="tv-overlay-video">
+      <div class="tv-overlay-video-inner">
+        <video id="tvOverlayVideo" playsinline controls></video>
+        <div class="tv-overlay-en-directo">EN VIVO</div>
+      </div>
+    </div>
+    <div class="tv-overlay-card">
+      <div class="tv-overlay-handle"></div>
+      <div class="tv-overlay-song">
+        <h3>RCC TV en Vivo</h3>
+        <p>100.7 FM · Radio-TV RCC</p>
+      </div>
+      <div class="tv-overlay-progress">
+        <span class="tv-overlay-time">En vivo</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── FOOTER ─── -->
+  <footer id="contacto">
+    <div class="footer-top">
+      <!-- Flame logo white -->
+      <div class="footer-logo-icon">
+        <svg width="36" height="44" viewBox="0 0 36 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M18 2 C11 10 7 18 11 26 C9 20 13 16 13 22 C15 16 19 12 17 6 C23 12 21 22 19 28 C23 22 27 16 23 10 C29 16 29 28 23 34 C25 38 21 42 18 42 C15 42 11 38 13 34 C7 28 7 18 13 10 C11 16 15 20 15 26 C19 20 25 12 18 2Z" fill="rgba(255,255,255,0.9)"/>
+          <rect x="16.5" y="0" width="3" height="12" fill="rgba(255,255,255,0.9)"/>
+          <rect x="11" y="4" width="14" height="3" fill="rgba(255,255,255,0.9)"/>
+        </svg>
+      </div>
+      <div class="footer-name">RCC – RENOVACIÓN CARISMÁTICA CATÓLICA</div>
+    </div>
+
+    <div class="footer-contact">
+      <div class="footer-contact-item">
+        <!-- Phone icon -->
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path d="M6.62 10.79a15.45 15.45 0 0 0 6.59 6.59l2.2-2.2a1 1 0 0 1 1.01-.24 11.47 11.47 0 0 0 3.58.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.58a1 1 0 0 1-.24 1.01l-2.21 2.2z"/>
+        </svg>
+        <span>Tel: +502 5967 6345</span>
+      </div>
+
+      <div class="footer-contact-item">
+        <!-- Email icon -->
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z"/>
+        </svg>
+        <div class="footer-contact-email">
+          <span>Tel: +502 5967 6345</span>
+          <span>Email: rccradio@info.com</span>
+        </div>
+      </div>
+
+    </div>
+
+    <p class="footer-copy">Copyright © 2006 codex Radios gt</p>
+  </footer>
+
+  <script>
+    const toggle = document.getElementById('navToggle');
+    const nav    = document.getElementById('mainNav');
+
+    toggle.addEventListener('click', () => {
+      const isOpen = nav.classList.toggle('open');
+      toggle.classList.toggle('open', isOpen);
+      toggle.setAttribute('aria-expanded', isOpen);
+    });
+
+    nav.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        nav.classList.remove('open');
+        toggle.classList.remove('open');
+        toggle.setAttribute('aria-expanded', false);
+      });
+    });
+
+    document.addEventListener('click', e => {
+      if (!nav.contains(e.target) && !toggle.contains(e.target)) {
+        nav.classList.remove('open');
+        toggle.classList.remove('open');
+        toggle.setAttribute('aria-expanded', false);
+      }
+    });
+
+    /* Radio overlay */
+    const btnEscuchar = document.getElementById('btnEscucharVivo');
+    const linkRadioOverlay = document.getElementById('linkRadioOverlay');
+    const radioOverlay = document.getElementById('radioOverlay');
+
+    const STREAM_URL = 'https://live20.bozztv.com/giatv/giatv-rccradiotv/rccradiotv/playlist.m3u8';
+
+    function openRadioOverlay() {
+      radioOverlay.classList.add('open');
+      document.body.style.overflow = 'hidden';
+      initRadioStream();
+    }
+
+    function initRadioStream() {
+      const video = document.getElementById('radioOverlayVideo');
+      if (!video || !window.Hls) return;
+      if (Hls.isSupported()) {
+        if (window.radioHls) window.radioHls.destroy();
+        const hls = new Hls();
+        hls.loadSource(STREAM_URL);
+        hls.attachMedia(video);
+        window.radioHls = hls;
+        video.play().catch(() => {});
+      } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
+        video.src = STREAM_URL;
+        video.play().catch(() => {});
+      }
+    }
+
+    if (btnEscuchar && radioOverlay) {
+      const radioOverlayBack = document.getElementById('radioOverlayBack');
+
+      btnEscuchar.addEventListener('click', (e) => {
+        e.preventDefault();
+        openRadioOverlay();
+      });
+
+      if (linkRadioOverlay) {
+        linkRadioOverlay.addEventListener('click', (e) => {
+          e.preventDefault();
+          openRadioOverlay();
+        });
+      }
+
+      const audioPlayerPlayBtn = document.querySelector('.audio-player .play-btn');
+      if (audioPlayerPlayBtn) {
+        audioPlayerPlayBtn.addEventListener('click', () => openRadioOverlay());
+      }
+
+      function closeRadioOverlay() {
+        radioOverlay.classList.remove('open');
+        document.body.style.overflow = '';
+        const video = document.getElementById('radioOverlayVideo');
+        if (video) { video.pause(); }
+        if (window.radioHls) { window.radioHls.destroy(); window.radioHls = null; }
+      }
+
+      if (radioOverlayBack) radioOverlayBack.addEventListener('click', closeRadioOverlay);
+
+      radioOverlay.addEventListener('click', (e) => {
+        if (e.target === radioOverlay || e.target.closest('.radio-overlay-handle')) {
+          closeRadioOverlay();
+        }
+      });
+
+      const radioPlayBtn = document.getElementById('radioOverlayPlayBtn');
+      const radioVideo = document.getElementById('radioOverlayVideo');
+      if (radioPlayBtn && radioVideo) {
+        const radioVisualizer = document.getElementById('radioOverlayVisualizer');
+
+        function updateRadioPlayIcon() {
+          const playIcon = radioPlayBtn.querySelector('.icon-play');
+          const pauseIcon = radioPlayBtn.querySelector('.icon-pause');
+          if (radioVideo.paused) {
+            if (playIcon) playIcon.style.display = '';
+            if (pauseIcon) pauseIcon.style.display = 'none';
+            radioPlayBtn.setAttribute('aria-label', 'Reproducir');
+            if (radioVisualizer) radioVisualizer.style.display = 'none';
+          } else {
+            if (playIcon) playIcon.style.display = 'none';
+            if (pauseIcon) pauseIcon.style.display = '';
+            radioPlayBtn.setAttribute('aria-label', 'Pausar');
+            if (radioVisualizer) radioVisualizer.style.display = 'flex';
+          }
+        }
+        radioPlayBtn.addEventListener('click', () => {
+          if (radioVideo.paused) radioVideo.play();
+          else radioVideo.pause();
+        });
+        radioVideo.addEventListener('play', updateRadioPlayIcon);
+        radioVideo.addEventListener('pause', updateRadioPlayIcon);
+
+        const radioVolumeSlider = document.getElementById('radioOverlayVolume');
+        if (radioVolumeSlider) {
+          radioVolumeSlider.addEventListener('input', () => {
+            radioVideo.volume = radioVolumeSlider.value / 100;
+          });
+        }
+      }
+    }
+
+    /* TV overlay */
+    const btnVerTransmision = document.getElementById('btnVerTransmision');
+    const tvOverlay = document.getElementById('tvOverlay');
+    const tvOverlayBack = document.getElementById('tvOverlayBack');
+
+    const linkTvOverlay = document.getElementById('linkTvOverlay');
+
+    function openTvOverlay() {
+      if (tvOverlay) {
+        tvOverlay.classList.add('open');
+        document.body.style.overflow = 'hidden';
+        initTvStream();
+      }
+    }
+
+    function initTvStream() {
+      const video = document.getElementById('tvOverlayVideo');
+      if (!video || !window.Hls) return;
+      if (Hls.isSupported()) {
+        if (window.tvHls) window.tvHls.destroy();
+        const hls = new Hls();
+        hls.loadSource(STREAM_URL);
+        hls.attachMedia(video);
+        window.tvHls = hls;
+        video.play().catch(() => {});
+      } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
+        video.src = STREAM_URL;
+        video.play().catch(() => {});
+      }
+    }
+
+    if (btnVerTransmision && tvOverlay) {
+      btnVerTransmision.addEventListener('click', (e) => {
+        e.preventDefault();
+        openTvOverlay();
+      });
+
+      if (linkTvOverlay) {
+        linkTvOverlay.addEventListener('click', (e) => {
+          e.preventDefault();
+          openTvOverlay();
+        });
+      }
+
+      function closeTvOverlay() {
+        tvOverlay.classList.remove('open');
+        document.body.style.overflow = '';
+        const video = document.getElementById('tvOverlayVideo');
+        if (video) { video.pause(); }
+        if (window.tvHls) { window.tvHls.destroy(); window.tvHls = null; }
+      }
+
+      if (tvOverlayBack) tvOverlayBack.addEventListener('click', closeTvOverlay);
+
+      tvOverlay.addEventListener('click', (e) => {
+        if (e.target === tvOverlay || e.target.closest('.tv-overlay-handle')) {
+          closeTvOverlay();
+        }
+      });
+    }
+  </script>
+</body>
+</html>
