@@ -1697,9 +1697,13 @@
       }
 
       function closeTvOverlay() {
+        const video = document.getElementById('tvOverlayVideo');
+        if (document.fullscreenElement || document.webkitFullscreenElement) {
+          (document.exitFullscreen || document.webkitExitFullscreen)?.call(document);
+        }
+        if (screen.orientation?.unlock) screen.orientation.unlock();
         tvOverlay.classList.remove('open');
         document.body.style.overflow = '';
-        const video = document.getElementById('tvOverlayVideo');
         if (video) { video.pause(); }
         if (window.tvHls) { window.tvHls.destroy(); window.tvHls = null; }
       }
@@ -1711,6 +1715,22 @@
           closeTvOverlay();
         }
       });
+
+      /* Rotar automático a landscape en pantalla completa */
+      const tvVideo = document.getElementById('tvOverlayVideo');
+      function onFullscreenChange() {
+        const fullscreenEl = document.fullscreenElement || document.webkitFullscreenElement || document.mozFullScreenElement || document.msFullscreenElement;
+        const isVideoFullscreen = tvVideo && (fullscreenEl === tvVideo || fullscreenEl?.contains?.(tvVideo));
+        if (screen.orientation?.lock && isVideoFullscreen) {
+          screen.orientation.lock('landscape').catch(() => {});
+        } else if (!fullscreenEl && screen.orientation?.unlock) {
+          screen.orientation.unlock();
+        }
+      }
+      document.addEventListener('fullscreenchange', onFullscreenChange);
+      document.addEventListener('webkitfullscreenchange', onFullscreenChange);
+      document.addEventListener('mozfullscreenchange', onFullscreenChange);
+      document.addEventListener('MSFullscreenChange', onFullscreenChange);
     }
 
     /* Service Worker: guardar página localmente para ahorrar ancho de banda */
