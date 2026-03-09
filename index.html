@@ -67,12 +67,13 @@
     }
 
     .logo-text-header {
-      font-size: 17.5px;
+      font-size: 16px;
       font-weight: 700;
       color: #c0001a;
-      letter-spacing: 1px;
+      letter-spacing: 0.5px;
       text-transform: uppercase;
       margin-left: 12px;
+      line-height: 1.2;
     }
 
     nav {
@@ -847,7 +848,7 @@
       text-align: center;
       padding: 13px 0;
       border: none;
-      border-radius: 4px;
+      border-radius: 20px;
       cursor: pointer;
       text-transform: uppercase;
       text-decoration: none;
@@ -1071,28 +1072,29 @@
       display: none;
       flex-direction: column;
       justify-content: center;
-      gap: 5px;
-      width: 38px;
-      height: 38px;
+      gap: 3px;
+      width: 28px;
+      height: 28px;
+      min-width: 28px;
       background: none;
       border: none;
       cursor: pointer;
-      padding: 4px;
+      padding: 3px;
       z-index: 200;
     }
 
     .nav-toggle span {
       display: block;
       width: 100%;
-      height: 2.5px;
+      height: 2px;
       background: #c0001a;
-      border-radius: 2px;
+      border-radius: 1px;
       transition: transform 0.3s, opacity 0.3s;
     }
 
-    .nav-toggle.open span:nth-child(1) { transform: translateY(7.5px) rotate(45deg); }
+    .nav-toggle.open span:nth-child(1) { transform: translateY(5px) rotate(45deg); }
     .nav-toggle.open span:nth-child(2) { opacity: 0; }
-    .nav-toggle.open span:nth-child(3) { transform: translateY(-7.5px) rotate(-45deg); }
+    .nav-toggle.open span:nth-child(3) { transform: translateY(-5px) rotate(-45deg); }
 
     /* ─── TABLET ≤ 900px ─── */
     @media (max-width: 900px) {
@@ -1122,12 +1124,13 @@
     @media (max-width: 640px) {
       /* Header */
       header {
-        padding: 10px 16px;
-        flex-wrap: wrap;
+        padding: 8px 12px;
+        flex-wrap: nowrap;
         position: relative;
       }
 
-      .logo-img { height: 58px; }
+      .logo-img { height: 44px; }
+      .logo-text-header { font-size: 13px; margin-left: 6px; letter-spacing: 0.3px; }
 
       /* Show hamburger, hide nav by default */
       .nav-toggle { display: flex; }
@@ -1234,6 +1237,13 @@
       .news-grid { grid-template-columns: 1fr; }
       .logo-text .subtitle { display: none; }
       .audio-player { padding: 18px 16px; }
+      header { padding: 6px 10px; }
+      .logo-img { height: 40px; }
+      .logo-text-header { font-size: 11px; margin-left: 4px; }
+      .nav-toggle { width: 24px; height: 24px; min-width: 24px; padding: 2px; gap: 2px; }
+      .nav-toggle span { height: 1.5px; }
+      .nav-toggle.open span:nth-child(1) { transform: translateY(4px) rotate(45deg); }
+      .nav-toggle.open span:nth-child(3) { transform: translateY(-4px) rotate(-45deg); }
     }
   </style>
 </head>
@@ -1243,7 +1253,7 @@
   <header>
     <a href="#" class="logo">
       <img src="images/logo.png" alt="RCC – Renovación Carismática Católica" class="logo-img">
-      <span class="logo-text-header">Radio-TV RCC</span>
+      <span class="logo-text-header">Renovación Carismática Católica</span>
     </a>
     <button class="nav-toggle" id="navToggle" aria-label="Abrir menú" aria-expanded="false">
       <span></span>
@@ -1341,7 +1351,7 @@
 
           <!-- Video Player -->
           <div class="video-player">
-            <img src="https://placehold.co/600x338/1a1a2e/ffffff?text=RCC+TV+Online" alt="RCC TV en vivo" />
+            <img src="https://placehold.co/600x338/1a1a2e/ffffff?text=Canal%20Tv%20Maria%20Guatemala" alt="Canal Tv Maria Guatemala" />
             <div class="en-directo">EN VIVO AHORA</div>
             <div class="video-play-btn">
               <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
@@ -1469,7 +1479,7 @@
     </header>
     <div class="tv-overlay-video">
       <div class="tv-overlay-video-inner">
-        <video id="tvOverlayVideo" playsinline controls></video>
+        <video id="tvOverlayVideo" playsinline controls poster="https://placehold.co/600x338/1a1a2e/ffffff?text=Canal%20Tv%20Maria%20Guatemala"></video>
         <div class="tv-overlay-en-directo">EN VIVO</div>
       </div>
     </div>
