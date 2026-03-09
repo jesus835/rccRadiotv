@@ -1,0 +1,24 @@
+{
+  "name": "RCC RADIO",
+  "short_name": "RCC RADIO",
+  "description": "RCC Radio y TV – Renovación Carismática Católica. Escucha 100.7 FM en vivo y mira la transmisión.",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#c0001a",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "icons/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "images/logo.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ]
+}
